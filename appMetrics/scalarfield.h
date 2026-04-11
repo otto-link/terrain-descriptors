@@ -2,8 +2,9 @@
 #define SCALARFIELD_H
 
 #include "core.h"
+#ifndef TD_BUILD_LIB
 #include <QImage>
-
+#endif
 
 class ScalarField2 : public FieldGrid2D
 {
@@ -11,7 +12,9 @@ public:
     ScalarField2();
     ScalarField2(const Box2& domain, int nx, int ny, double v = 0.0);
     ScalarField2(const Box2& domain, int nx, int ny, const std::vector<double>& v);
+#ifndef TD_BUILD_LIB
     ScalarField2(const Box2& domain, const QImage& image, double a, double b, bool grayscale);
+#endif
     virtual ~ScalarField2() {};
 
     double& operator()(int i, int j) { return field[cellId(i, j)]; }
@@ -34,8 +37,10 @@ public:
     void step(double a, double b);
     void threshold(double v);
     void normalize();
+#ifndef TD_BUILD_LIB
     void addGaussian(const Vector2& center, const double& radius, const double& height);
-
+#endif
+  
     ScalarField2 setResolution(int nx, int ny) const;
 
     ScalarField2 gaussianBlur(int r) const;
@@ -43,10 +48,12 @@ public:
     ScalarField2 minFilter(int w) const;
     ScalarField2 summedAreaTable() const;
 
+#ifndef TD_BUILD_LIB
     QImage createImage(bool grayscale) const;
     QImage createImage(double a, double b, bool grayscale) const;
     QImage createImage(const ColorPalette& palette) const;
     QImage createImage(double a, double b, const ColorPalette& palette) const;
+#endif
 
     ScalarField2& operator+=(const ScalarField2& s);
     ScalarField2& operator+=(const double& d);

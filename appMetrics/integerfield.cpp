@@ -59,6 +59,7 @@ void IntField2::fill(int s)
     std::fill(field.begin(), field.end(), s);
 }
 
+#ifndef TD_BUILD_LIB
 QImage IntField2::createImage(const LookupPalette& palette) const
 {
     QImage image(nx, ny, QImage::Format_RGBA8888);
@@ -70,6 +71,7 @@ QImage IntField2::createImage(const LookupPalette& palette) const
     }
     return image;
 }
+#endif
 
 ScalarField2 IntField2::toScalarField() const
 {

@@ -4,7 +4,9 @@
 #include <cmath>
 #include <vector>
 #include <random>
+#ifndef TD_BUILD_LIB
 #include <QColor>
+#endif
 
 namespace Math {
     const double Pi = 3.14159265358979323846;
@@ -538,7 +540,7 @@ public:
     static Camera View(const Box3& box);
 };
 
-
+#ifndef TD_BUILD_LIB
 inline Vector3 fromQColor(const QColor& c) {
     return Vector3(c.red() / 255.0, c.green() / 255.0, c.blue() / 255.0);
 }
@@ -549,6 +551,7 @@ inline QColor toQColor(const Vector3& c) {
                   int(255.0 * Math::Clamp(c[2])),
                   255);
 }
+#endif
 
 class ColorPalette
 {

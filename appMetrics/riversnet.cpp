@@ -1,4 +1,5 @@
 #include "riversnet.h"
+#include <algorithm>
 #include <queue>
 
 
