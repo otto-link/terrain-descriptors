@@ -9,7 +9,9 @@ class HeightField : public ScalarField2
 public:
     HeightField() {}
     HeightField(const ScalarField2&);
+#ifndef TD_BUILD_LIB
     explicit HeightField(const Box2&, const QImage&, const double& = 0.0, const double& = 256.0 * 256.0 - 1.0, bool = true);
+#endif
     explicit HeightField(const Box2&, int, int, const double& = 0.0);
     explicit HeightField(const Box2&, int, int, const std::vector<double>&);
     ~HeightField() {}

@@ -15,6 +15,7 @@ ScalarField2::ScalarField2(const Box2& domain, int nx, int ny, const std::vector
     field = v;
 }
 
+#ifndef TD_BUILD_LIB
 ScalarField2::ScalarField2(const Box2& domain, const QImage& image, double a, double b, bool grayscale)
     : FieldGrid2D(domain, image.width(), image.height())
 {
@@ -49,6 +50,7 @@ ScalarField2::ScalarField2(const Box2& domain, const QImage& image, double a, do
         }
     }
 }
+#endif
 
 double ScalarField2::value(const Vector2& p) const
 {
@@ -357,6 +359,7 @@ void ScalarField2::normalize()
     }
 }
 
+#ifndef TD_BUILD_LIB
 void ScalarField2::addGaussian(const Vector2& center, const double& radius, const double& height)
 {
 
@@ -388,6 +391,7 @@ void ScalarField2::addGaussian(const Vector2& center, const double& radius, cons
         }
     }
 }
+#endif
 
 ScalarField2 ScalarField2::setResolution(int x, int y) const
 {
@@ -428,6 +432,7 @@ ScalarField2 ScalarField2::setResolution(int x, int y) const
     return sampled;
 }
 
+#ifndef TD_BUILD_LIB
 QImage ScalarField2::createImage(bool grayscale) const
 {
     double a, b;
@@ -487,6 +492,7 @@ QImage ScalarField2::createImage(double a, double b, const ColorPalette& palette
     }
     return image;
 }
+#endif
 
 ScalarField2& ScalarField2::operator+=(const ScalarField2& s)
 {

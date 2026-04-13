@@ -41,10 +41,12 @@ HeightField::HeightField(const ScalarField2& s)
 \param a, b Minimum and maximum elevation range.
 \param grayscale Boolean set to false if the image is provided in color.
 */
+#ifndef TD_BUILD_LIB
 HeightField::HeightField(const Box2& box, const QImage& image, const double& a, const double& b, bool grayscale)
     : ScalarField2(box, image, a, b, grayscale)
 {
 }
+#endif
 
 /*!
 \brief Compute the elevation of a given position on the terrain.

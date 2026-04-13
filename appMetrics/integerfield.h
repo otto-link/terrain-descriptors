@@ -2,7 +2,9 @@
 #define INTEGERFIELD_H
 
 #include "core.h"
+#ifndef TD_BUILD_LIB
 #include <QImage>
+#endif
 
 class ScalarField2;
 
@@ -28,7 +30,9 @@ public:
 
     void fill(int);
 
+#ifndef TD_BUILD_LIB
     QImage createImage(const LookupPalette&) const;
+#endif
 
     ScalarField2 toScalarField() const;
 
