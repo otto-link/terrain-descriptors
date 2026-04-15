@@ -37,9 +37,7 @@ public:
     void step(double a, double b);
     void threshold(double v);
     void normalize();
-#ifndef TD_BUILD_LIB
     void addGaussian(const Vector2& center, const double& radius, const double& height);
-#endif
   
     ScalarField2 setResolution(int nx, int ny) const;
 

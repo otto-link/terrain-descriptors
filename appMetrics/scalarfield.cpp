@@ -359,29 +359,23 @@ void ScalarField2::normalize()
     }
 }
 
-#ifndef TD_BUILD_LIB
 void ScalarField2::addGaussian(const Vector2& center, const double& radius, const double& height)
 {
-
     Box2 box (center, radius);
 
+    // Rectangle
     int ia,ib,ja,jb;
     cellCoords(box.getMin(), ia, ja);
     cellCoords(box.getMax(), ib, jb);
-
-    QPoint pa(ia, ja);
-    QPoint pb(ib, jb);
-
-    // Rectangle
-    QRect area(pa.x(), pa.y(), pb.x() - pa.x() + 1, pb.y() - pa.y() + 1);
+    IndexArea area(ia, ja, ib, jb);
 
     // Limit to domain
-    QRect mask(0, 0, nx - 1, ny - 1);
+    IndexArea mask(0, 0, nx - 1, ny - 1);
     area = area.intersected(mask);
 
     // Add to field
-    for (int y = area.y(); y <= area.y() + area.height(); y++) {
-        for (int x = area.x(); x <= area.x() + area.width(); x++) {
+    for (int y = area.ymin(); y <= area.ymax(); y++) {
+        for (int x = area.xmin(); x <= area.xmax(); x++) {
             // Distance between central point and current point
             double u = SquaredNorm(center - domainCoords(x, y));
 
@@ -391,7 +385,6 @@ void ScalarField2::addGaussian(const Vector2& center, const double& radius, cons
         }
     }
 }
-#endif
 
 ScalarField2 ScalarField2::setResolution(int x, int y) const
 {
