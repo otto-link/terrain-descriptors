@@ -1,5 +1,6 @@
 #include "scalarfield.h"
 #include <algorithm>
+#include <numeric>
 
 ScalarField2::ScalarField2() : FieldGrid2D(Box2(Vector2(0), Vector2(1)), 0, 0)
 {

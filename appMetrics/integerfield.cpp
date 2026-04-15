@@ -1,6 +1,7 @@
 #include "integerfield.h"
 #include "scalarfield.h"
 #include <algorithm>
+#include <numeric>
 
 
 IntField2::IntField2() : FieldGrid2D(Box2(), 0, 0)
